@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>TASK 2</title>
+	
+	<style>
+	body
+	{
+		padding: 40px;
+		margin:80px;
+		
+	}
+	#text1{
+		padding:40px;
+		margin:30px;
+		text-decoration:none;
+		text-align:center;
+		text-transform: uppercase;
+		font-size:80px;
+		color:black;
+		font-weight:bold;
+
+		
+		
+	}
+	#form1{
+		padding:40px;
+		margin:20px;
+		text-align:center;
+		font-size:40px;
+		
+	}
+	
+	</style>
+	
+	
+  </head>
+  <body>
+
+    <h1 id="text1">Upload an image</h1>
+    <form action="/action_page.php" id="form1">
+      <label for="img">Select image:</label>
+      <input type="file" id="profile_photo" name="img" accept="/image/*">
+      <button type="button">Upload</button>
+    </form>
+    <script type="text/javascript">
+      
+      var _URL = window.URL || window.webkitURL;
+      $("#profile_photo").change(function(e) {
+        var file, img;
+
+
+        if ((file = this.files[0])) {
+            img = new Image();
+            img.onload = function() {
+                
+                width = this.width;
+                height = this.height;
+
+                if(width === 600){
+                  alert("Correct width");
+                }
+                else if(width > 600){
+                  alert("Please upload cropped image");
+                }
+                else{
+                  alert("Please upload another image");
+                }
+            };
+            img.onerror = function() {
+                alert( "not a valid file: " + file.type);
+            };
+            img.src = _URL.createObjectURL(file);
+        }
+
+      });
+
+    </script>
+  </body>
+</html>
